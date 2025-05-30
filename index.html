@@ -870,28 +870,29 @@
         <div class="container">
             <h2 class="section-title reveal">Restons en contact</h2>
             <div class="contact-form reveal">
-                <form>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-input" placeholder="Votre email" required>
-                        </div>
-                    </div>
-                    <div class="form-group full-width">
-                        <input type="text" class="form-input" placeholder="Sujet du message" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <textarea class="form-input" rows="6" placeholder="Votre message..." required></textarea>
-                    </div>
-                    <div style="text-align: center; margin-top: 32px;">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
-                            Envoyer le message
-                        </button>
-                    </div>
-                </form>
+<form action="https://formspree.io/f/mzzeaaao" method="POST">
+    <div class="form-grid">
+        <div class="form-group">
+            <input type="text" name="nom" class="form-input" placeholder="Votre nom" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" class="form-input" placeholder="Votre email" required>
+        </div>
+    </div>
+    <div class="form-group full-width">
+        <input type="text" name="sujet" class="form-input" placeholder="Sujet du message" required>
+    </div>
+    <div class="form-group full-width">
+        <textarea name="message" class="form-input" rows="6" placeholder="Votre message..." required></textarea>
+    </div>
+    <div style="text-align: center; margin-top: 32px;">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+            Envoyer le message
+        </button>
+    </div>
+</form>
+
             </div>
         </div>
     </section>
