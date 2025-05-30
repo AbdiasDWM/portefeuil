@@ -866,38 +866,83 @@
 </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-    <div class="container">
-        <h2 class="section-title reveal">Restons en contact</h2>
-        <div class="contact-form reveal">
-            <form action="https://formspree.io/f/mzzeaaao" method="POST">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <input type="text" name="nom" class="form-input" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-input" placeholder="Votre email" required>
-                    </div>
-                </div>
-                <div class="form-group full-width">
-                    <input type="text" name="sujet" class="form-input" placeholder="Sujet du message" required>
-                </div>
-                <div class="form-group full-width">
-                    <textarea name="message" class="form-input" rows="6" placeholder="Votre message..." required></textarea>
-                </div>
-               
-                <div style="text-align: center; margin-top: 32px;">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
-                        Envoyer le message
-                    </button>
-                </div>
-                
-            </form>
-       <p id="form-message" style="display: none; color: green; text-align: center;">Message envoyé avec succès !</p>
-
-            </div>
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title reveal">Restons en contact</h2>
+    <div class="contact-form reveal">
+      <form id="contact-form" action="https://formspree.io/f/mzzeaaao" method="POST">
+        <div class="form-grid">
+          <div class="form-group">
+            <input type="text" name="nom" class="form-input" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-input" placeholder="Votre email" required>
+          </div>
         </div>
+        <div class="form-group full-width">
+          <input type="text" name="sujet" class="form-input" placeholder="Sujet du message" required>
+        </div>
+        <div class="form-group full-width">
+          <textarea name="message" class="form-input" rows="6" placeholder="Votre message..." required></textarea>
+        </div>
+
+        <div style="text-align: center; margin-top: 32px;">
+          <button type="submit" class="btn btn-primary" id="send-button">
+            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+            Envoyer le message
+          </button>
+        </div>
+      </form>
+      <p id="form-message" style="display: none; color: green; text-align: center; margin-top: 20px;">
+        Message envoyé avec succès !
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- JS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  const button = document.getElementById('send-button');
+  const messageBox = document.getElementById('form-message');
+  const originalText = button.innerHTML;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        // Success feedback
+        messageBox.style.display = 'block';
+        button.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i>Message envoyé !';
+        button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        form.reset();
+
+        setTimeout(() => {
+          messageBox.style.display = 'none';
+          button.innerHTML = originalText;
+          button.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+        }, 3000);
+      } else {
+        alert("Erreur lors de l'envoi du message.");
+      }
+    }).catch(error => {
+      console.error(error);
+      alert("Impossible d'envoyer le message. Vérifiez votre connexion.");
+    });
+  });
+});
+</script>
+
     </section>
 
     <script>
@@ -976,43 +1021,7 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-       document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Empêche le rechargement
-
-    const form = this;
-    const data = new FormData(form);
-
-    const button = form.querySelector('button');
-    const originalText = button.innerHTML;
-
-    // Envoie vers Formspree
-    fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Animation de succès
-            button.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i>Message envoyé !';
-            button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-            form.reset();
-
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
-            }, 3000);
-        } else {
-            alert("Une erreur s'est produite lors de l'envoi.");
-        }
-    })
-    .catch(error => {
-        console.error('Erreur:', error);
-        alert("Impossible d'envoyer le message.");
-    });
-});
+     
         // Parallax effect pour les éléments flottants
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
