@@ -650,6 +650,14 @@
         text-align: center;
         padding: 20px 10px;
     }
+        .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
 }
 
 
@@ -718,6 +726,37 @@
 .service-card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+    /* Par défaut, on cache le menu mobile */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background-color: #111;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+/* Quand actif (menu ouvert) */
+.mobile-nav.active {
+  display: flex;
+}
+
+/* Icône hamburger visible uniquement en mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
 }
 
     </style>
@@ -1221,6 +1260,20 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', revealOnScroll);
   window.addEventListener('load', revealOnScroll);
 </script>
+    <script>
+  function toggleMobileNav() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+  }
+
+  // Fermer le menu si un lien est cliqué
+  document.querySelectorAll('#mobileMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('active');
+    });
+  });
+</script>
+
 
 </body>
 </html>
