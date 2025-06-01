@@ -99,7 +99,7 @@
             border-radius: 50px;
             padding: 12px 24px;
             z-index: 1000;
-            transition: all 0.3s ease;
+           transition: none !important; /* Empêche les effets lors du scroll */
         }
 
         nav:hover {
@@ -127,6 +127,9 @@
             list-style: none;
             gap: 24px;
             align-items: center;
+            .nav-menu {
+  margin-top: 60px; /* Pour que le menu ne soit pas masqué par le header */
+}
         }
 
         .nav-link {
@@ -579,10 +582,18 @@
     }
 
     .nav-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
+         .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    background: rgba(15, 15, 35, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 0 0 16px 16px;
+    z-index: 999;
     }
 
     .nav-menu a {
