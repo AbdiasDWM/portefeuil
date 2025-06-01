@@ -558,50 +558,89 @@
             color: var(--text-muted);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                right: 20px;
-                transform: none;
-                border-radius: 16px;
-            }
+        /* Responsive pour les écrans jusqu'à 768px */
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        transform: none;
+        border-radius: 16px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.8); /* Amélioration de lisibilité */
+        z-index: 1000;
+    }
 
-            .nav-container {
-                justify-content: space-between;
-            }
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 
-            .nav-menu {
-                gap: 16px;
-            }
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
 
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+    .nav-menu a {
+        padding: 10px 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
+    .about-grid,
+    .skills-grid,
+    .portfolio-grid,
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0 16px;
+    }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
+    body {
+        cursor: auto;
+        overflow-x: hidden;
+    }
 
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
+    .cursor,
+    .cursor-follower {
+        display: none !important;
+    }
 
-            body {
-                cursor: auto;
-            }
+    h1, h2, h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
 
-            .cursor, .cursor-follower {
-                display: none;
-            }
-        }
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    button,
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    img,
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px 10px;
+    }
+}
+
 
         /* Scroll animations */
         .reveal {
@@ -686,7 +725,7 @@
             <div class="logo">Portfolio</div>
             <ul class="nav-menu">
                 <li><a href="#hero" class="nav-link active">Accueil</a></li>
-                <li><a href="#about" class="nav-link">À propos</a></li>
+                <li><a href="#about" class="nav-link">propos</a></li>
                 <li class="dropdown">
                     <a href="#projet" class="nav-link dropdown-toggle">
                         projet</i>
